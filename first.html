@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>vue for test</title>
+    </head>
+    <body>
+        <div id="vue1">
+            <ul>
+                <li v-for="item in items">
+                    {{item.name}}
+                </li>
+            </ul>
+            <div v-if="show">{{message}}</div>
+            <button v-on:click="{{show = !show}}">click me</button>
+            <div>
+                <input v-model="firstName">
+                <input v-model="lastName">
+                <div>{{fullName}}</div>
+            </div>
+            <div>
+                <input v-model="newItem">
+                <button v-on:click="addItem">addItem</button>
+            </div>
+            <div>
+                <div v-for="(value,key) in persion">
+                    {{key}} : {{value}}
+                </div>
+            </div>
+            <div>
+                <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+                <label for="jack">Jack</label>
+                <input type="checkbox" id="john" value="John" v-model="checkedNames">
+                <label for="john">John</label>
+                <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+                <label for="mike">Mike</label>
+                <br>
+                <span>Checked names: {{ checkedNames }}</span>
+            </div>
+        </div>
+        <script>
+            var vue1 = new Vue({
+                el: '#vue1',
+                data: {
+                    show: true,
+                    message: 'you see me now',
+                    items: [
+                        {name: 'apple'},
+                        {name: 'banal'},
+                        {name: 'cat'},
+                        {name: 'dogs'}
+                    ],
+                    firstName: '',
+                    lastName: '',
+                    newItem: '',
+                    persion: {
+                        firstName: 'liu',
+                        lastName: 'xingyi',
+                        age: 30,
+                        address: '深圳'
+                    },
+                    checkedNames: []
+                },
+                computed: {
+                    fullName: function() {
+                        return this.firstName + this.lastName;
+                    }
+                },
+                methods: {
+                    addItem: function(event) {
+                        if(this.newItem == ''){
+                            alert('pleast input a value first');
+                            return;
+                        }
+                        var item = {name: this.newItem};
+                        this.items.push(item);
+                        this.newItem = '';
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

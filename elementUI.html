@@ -1,0 +1,184 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+  <div id="app">
+    <el-container class="home-container">
+      <el-header class="home-header"></el-header>
+      <el-container>
+        <el-alside class="home-aside">
+          <el-menu style="background: #ececec;width: 180px;" unique-opened>
+            <template v-for="(item,index) in menus">
+              <el-submenu :key="index" :index="index + ''">
+                <template slot="title">
+                  <i :class="item.icon"></i>
+                  <span slot="title">{{item.name}}</span>
+                </template>
+                <el-menu-item v-for="child in item.subItems" :index="child.url" :key="child.url">
+                  {{child.name}}
+                </el-menu-item>
+              </el-submenu>
+            </template>
+          </el-menu>
+        </el-alside>
+        <el-main clas="home-main">
+          <h1>welcome!</h1>
+          <router-view></router-view>
+        </el-main>
+      </el-container>
+      <el-footer class="home-footer"></el-footer>
+    </el-container>
+  </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      menus: [{
+        name: '菜单1',
+        icon: 'el-icon-location',
+        subItems: [{
+          name: '子菜单1.1',
+          url: '/ffff/gggg'
+        }, {
+          name: '子菜单1.2',
+          url: '#'
+        }, {
+          name: '子菜单1.3',
+          url: '#'
+        }, {
+          name: '子菜单1.4',
+          url: '#'
+        }
+        ]
+      }, {
+        name: '菜单2',
+        icon: 'el-icon-menu',
+        subItems: [{
+          name: '子菜单2.1',
+          url: '#'
+        }, {
+          name: '子菜单2.2',
+          url: '#'
+        }, {
+          name: '子菜单2.3',
+          url: '#'
+        }, {
+          name: '子菜单2.4',
+          url: '#'
+        }
+        ]
+      }, {
+        name: '菜单3',
+        icon: 'el-icon-document',
+        subItems: [{
+          name: '子菜单3.1',
+          url: '#'
+        }, {
+          name: '子菜单3.2',
+          url: '#'
+        }, {
+          name: '子菜单3.3',
+          url: '#'
+        }, {
+          name: '子菜单3.4',
+          url: '#'
+        }
+        ]
+      }, {
+        name: '菜单4',
+        icon: 'el-icon-setting',
+        subItems: [{
+          name: '子菜单4.1',
+          url: '#'
+        }, {
+          name: '子菜单4.2',
+          url: '#'
+        }, {
+          name: '子菜单4.3',
+          url: '#'
+        }, {
+          name: '子菜单4.4',
+          url: '#'
+        }
+        ]
+      }
+      ]
+    }
+  })
+</script>
+<style>
+  .home-container {
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+  }
+
+  .home-header {
+    background-color: #20a0ff;
+    color: #333;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: content-box;
+    padding: 0px;
+  }
+
+  .home-aside {
+    background-color: #ECECEC;
+  }
+
+  .home-main {
+    color: #000;
+    text-align: center;
+    margin: 10px;
+    padding: 0px;
+  }
+
+  .home-footer {
+    background-color: #20a0ff;
+    color: #333;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: content-box;
+    padding: 0px;
+  }
+
+  .home_title {
+    color: #fff;
+    font-size: 22px;
+    display: inline;
+    margin-left: 8px;
+  }
+
+  .home_userinfo {
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .home_userinfoContainer {
+    display: inline;
+    margin-right: 20px;
+  }
+
+  .el-submenu .el-menu-item {
+    width: 180px;
+    min-width: 175px;
+  }
+</style>
+
+</html>
